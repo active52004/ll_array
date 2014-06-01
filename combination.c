@@ -1,34 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <limits.h>
-#define ELE_LEN 32
+#include <math.h>
+#include "combination.h" 
+#define uchar unsigned char
+#define ELEM_TYPE uchar
 
-void combinations (int v[], int start, int n, int k, int maxk) {
-        int     i;
+int bin2dec(char *bin, int bin_len);
+void combinations_bin (int v[], 
+		int start, 
+		int n, 
+		int k, 
+		int maxk, 
+		char bin[], int bin_len,
+		int nCk_arr[], int nCk_arr_len,
+		int *nCk_index);
 
-        /* k here counts through positions in the maxk-element v.
-         * if k > maxk, then the v is complete and we can use it.
-         */
-        if (k > maxk) {
-                /* insert code here to use combinations as you please */
-                for (i=1; i<=maxk; i++) printf ("%i ", v[i]);
-                printf ("\n");
-                return;
-        }
 
-        /* for this k'th element of the v, try all start..n
-         * elements in that position
-         */
-        for (i=start; i<=n; i++) {
 
-                v[k] = i;
-
-                /* recursively generate combinations of integers
-                 * from i+1..n
-                 */
-                combinations (v, i+1, n, k+1, maxk);
-        }
+int bin2dec(char *bin, int bin_len)
+{
+	int i=0;
+	int result=0;
+	for (i = bin_len-1;i>=0;i--)
+	{
+		result += bin[i]*pow(2, bin_len-1-i);	
+	}
+	return result;
 }
 
 /*
@@ -43,10 +41,13 @@ void combinations_bin (int v[],
 		int n, 
 		int k, 
 		int maxk, 
-		char bin[], int bin_len) 
+		char bin[], int bin_len,
+		int nCk_arr[], int nCk_arr_len,
+		int *nCk_index) 
 {
         int     i;
 		memset(bin, 0, bin_len);
+		int dec=0;
 
         /* k here counts through positions in the maxk-element v.
          * if k > maxk, then the v is complete and we can use it.
@@ -55,16 +56,17 @@ void combinations_bin (int v[],
                 /* insert code here to use combinations as you please */
                 for (i=1; i<=maxk; i++) 
 				{
-					printf ("%i ", v[i]);
+//					printf ("%i ", v[i]);
 					bin[v[i]-1] = 1;
 				}
-                printf ("\n");
-				for(i=0;i<bin_len;i++)
-				{
-					printf("%i ",bin[i]);
-				}
-				printf("\n");
-                return;
+ //               printf ("\n");
+
+				dec = bin2dec(bin, bin_len);
+
+				dec = (ELEM_TYPE) dec;
+				nCk_arr[*nCk_index] = dec;
+				*nCk_index += 1;
+                return ;
         }
 
         /* for this k'th element of the v, try all start..n
@@ -77,27 +79,7 @@ void combinations_bin (int v[],
                 /* recursively generate combinations of integers
                  * from i+1..n
                  */
-                combinations_bin (v, i+1, n, k+1, maxk, bin, bin_len);
+                combinations_bin (v, i+1, n, k+1, maxk, bin, bin_len, nCk_arr, nCk_arr_len, nCk_index);
         }
 }
-int main (int argc, char *argv[]) {
-        int     v[100], n, k;
 
-		/*
-        if (argc != 3) {
-                printf ("Usage: %s n k\n", argv[0]);
-                exit (1);
-        }
-		*/
-		scanf("%d", &k);
-		n = ELE_LEN;
-
-        /* generate all combinations of n elements taken
-         * k at a time, starting with combinations containing 1
-         * in the first position.
-         */
-
-		char bin[ELE_LEN];
-        combinations_bin (v, 1, n, 1, k, bin, ELE_LEN);
-        exit (0);
-}
