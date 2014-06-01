@@ -3,6 +3,8 @@
 #include <string.h>
 #include <math.h>
 #include "combination.h" 
+
+#define ELE_LEN 32
 #define uchar unsigned char
 #define ELEM_TYPE uchar
 
@@ -59,7 +61,6 @@ void combinations_bin (int v[],
 //					printf ("%i ", v[i]);
 					bin[v[i]-1] = 1;
 				}
- //               printf ("\n");
 
 				dec = bin2dec(bin, bin_len);
 

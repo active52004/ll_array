@@ -6,20 +6,22 @@
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 ELEM_LEN	LL_arr_gen.h	4;"	d
 ELEM_TYPE	LL_arr_gen.h	3;"	d
+ELEM_TYPE	combination.c	9;"	d	file:
 ELE_LEN	combination.c	7;"	d	file:
-LL_arr_gen_func	LL_arr_gen.c	/^void LL_arr_gen_func(int blk_num, int *length_arr, Node **node_arr)$/;"	f
+LL_arr_gen_func	LL_arr_gen.c	/^void LL_arr_gen_func(Node **node_arr, int blk_num)$/;"	f
 Node	LL_arr_gen.h	/^}Node;$/;"	t	typeref:struct:node
 bin2dec	combination.c	/^int bin2dec(char *bin, int bin_len)$/;"	f
+bits_freq_input	test.c	/^void bits_freq_input(int input_blk_num, Node **index_tmp, Node **node_arr, ELEM_TYPE *input)$/;"	f
 combination	LL_arr_gen.c	/^int combination(int n, int k)$/;"	f
-combinations	combination.c	/^void combinations (int v[], int start, int n, int k, int maxk) {$/;"	f
 combinations_bin	combination.c	/^void combinations_bin (int v[], $/;"	f
 data	LL_arr_gen.h	/^	ELEM_TYPE data;$/;"	m	struct:node
 factorial	LL_arr_gen.c	/^int factorial(int n)$/;"	f
 init_LL	LL_arr_gen.c	/^void init_LL(Node *L)$/;"	f
 insert_node	LL_arr_gen.c	/^Node *insert_node(Node *H, ELEM_TYPE D)$/;"	f
-main	combination.c	/^int main (int argc, char *argv[]) {$/;"	f
-main	test.c	/^int main()$/;"	f
+main	test.c	/^void main()$/;"	f
 next	LL_arr_gen.h	/^	struct node *next;$/;"	m	struct:node	typeref:struct:node::node
 node	LL_arr_gen.h	/^typedef struct node{$/;"	s
+print_arr	test.c	/^void print_arr(ELEM_TYPE *arr, int len)$/;"	f
 traversal_list	LL_arr_gen.c	/^void traversal_list(Node *H)$/;"	f
 uchar	LL_arr_gen.h	2;"	d
+uchar	combination.c	8;"	d	file:

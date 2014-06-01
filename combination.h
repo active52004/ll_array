@@ -1,5 +1,5 @@
 #include <limits.h>
-#define ELE_LEN CHAR_BIT
+
 void combinations_bin (int v[], 
 		int start, 
 		int n, 
